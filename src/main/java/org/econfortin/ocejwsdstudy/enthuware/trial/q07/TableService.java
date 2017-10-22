@@ -6,7 +6,7 @@ import com.sun.jersey.api.client.WebResource;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("math")
+//@ApplicationPath("math")
 @Path("table")
 public class TableService extends Application {
     @POST

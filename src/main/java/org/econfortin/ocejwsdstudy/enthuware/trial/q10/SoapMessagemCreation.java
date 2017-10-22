@@ -1,7 +1,6 @@
 package org.econfortin.ocejwsdstudy.enthuware.trial.q10;
 
-import com.sun.xml.internal.messaging.saaj.soap.ver1_2.Envelope1_2Impl;
-
+import javax.xml.namespace.QName;
 import javax.xml.soap.*;
 
 public class SoapMessagemCreation {
@@ -9,12 +8,12 @@ public class SoapMessagemCreation {
     public static void main(String[] args) throws Exception {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage message = messageFactory.createMessage();
-        SOAPEnvelope soapFactory = new Envelope1_2Impl(null, null);
+        //SOAPEnvelope soapFactory = new Envelope1_2Impl(null, null);
         String endpoint = null;
 
-        Name bodyName = soapFactory.createName("getResultTimeInSeconds", "ns2", endpoint);
+        //Name bodyName = soapFactory.createName("getResultTimeInSeconds", "ns2", endpoint);
         SOAPBody body = message.getSOAPBody();
-        SOAPBodyElement bodyElement = body.addBodyElement(bodyName);
+        SOAPBodyElement bodyElement = body.addBodyElement(new QName(endpoint));
         SOAPElement arg = bodyElement.addChildElement("arg0");
         SOAPElement km = arg.addChildElement("kmPerHour");
         km.addTextNode("12.0");
