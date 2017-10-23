@@ -1,10 +1,8 @@
 package org.econfortin.ocejwsdstudy.enthuware.trial.q16;
 
-import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.core.Application;
 
 
 /*
@@ -25,9 +23,9 @@ import javax.ws.rs.core.Application;
  *      </auth-constraint>
  *  </security-constraint>
  */
-@ApplicationPath("jax")
+//@ApplicationPath("jax")
 @Path("rs")
-public class AdditionService extends Application {
+public class AdditionService {
 
     @GET
     @Path("/add/{num1}/{num2}")

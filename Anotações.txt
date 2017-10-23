@@ -1,0 +1,21 @@
+
+
+* Criar um cliente para um webservice baseado em SOAP.
+    - Standalone
+    - Em um managed server
+        + Pode ser feito usando @WebServiceRef
+
+    - Dymanic proxy client: Classes compiladas a partir da SEI fornecida.
+        + Geradas a partir do wsimport:
+            + SEI Service class;
+            + Exceptions da wsdl:fault;
+            + JAXB generated classes;
+        + Os proxys dinâmicos extendem a classe javax.lang.reflect.Proxy e são invocados de forma síncrona, assíncrona ou one-way
+
+    - Dispatch client: Para ser usando quando se quer trabalhar as mensagens a nivel de XML, ou quando não quer usar artefatos gerados
+        + O cliente é javax.xml.ws.Dispatch e é de forma síncrona, assíncrona ou one-way
+        + Quando usa o modo MESSAGE, o cliente é responsável por fornecer toda a mensagem SOAP (Envelope, Header e Body);
+        + Quando usa o modo PAYLOAD, o cliente é responsável somente por fornecer o <soap:Body>, o JAX-WS inclui ele num <soap:Envelope>;
+
+
+* Jersey Client API

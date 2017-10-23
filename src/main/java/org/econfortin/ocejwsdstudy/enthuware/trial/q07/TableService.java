@@ -8,7 +8,7 @@ import javax.ws.rs.core.Application;
 
 //@ApplicationPath("math")
 @Path("table")
-public class TableService extends Application {
+public class TableService {
     @POST
     @Path("/post")
     @Consumes("application/x-www-form-urlencoded")
