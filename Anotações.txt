@@ -1,21 +1,79 @@
+1. Create an SOAP web service in a servlet container
+    1.1. Create a web service starting from a WSDL file using JAX-WS
+    1.2. Create a web service using JAX-WS annotations
+
+2. Create a RESTful web service in a servlet container
+    2.1. Create a web service using JAX-RS, refer to Jersey implementation for examples
+
+3. Create a SOAP based web service implemented by an EJB component
+    3.1. Create an EJB web service implementations using annotations (@Stateless or @Singleton)
+    3.2. Create a web service starting from a Java source using JAX-WS
+
+4. Create a RESTful web service implemented by an EJB component
+    4.1. Create a web service using JAX-RS from EJB classes.
+
+5. Configure Java EE security for a SOAP web service
+    5.1. Configure security requirements of service using Java EE-container based security (overlaps with steps in other tasks - repeated here for convenience)
+
+6. Create a web service client for a SOAP based web service
+    6.1. Create a standalone client.
+    6.2. Create a client in a managed component in a EE container.
+        * Criar um cliente para um webservice baseado em SOAP.
+            - Standalone
+            - Em um managed server
+                + Pode ser feito usando @WebServiceRef
+
+            - Dymanic proxy client: Classes compiladas a partir da SEI fornecida.
+                + Geradas a partir do wsimport:
+                    + SEI Service class;
+                    + Exceptions da wsdl:fault;
+                    + JAXB generated classes;
+                + Os proxys dinâmicos extendem a classe javax.lang.reflect.Proxy e são invocados de forma síncrona, assíncrona ou one-way
+
+            - Dispatch client: Para ser usando quando se quer trabalhar as mensagens a nivel de XML, ou quando não quer usar artefatos gerados
+                + O cliente é javax.xml.ws.Dispatch e é de forma síncrona, assíncrona ou one-way
+                + Quando usa o modo MESSAGE, o cliente é responsável por fornecer toda a mensagem SOAP (Envelope, Header e Body);
+                + Quando usa o modo PAYLOAD, o cliente é responsável somente por fornecer o <soap:Body>, o JAX-WS inclui ele num <soap:Envelope>;
 
 
-* Criar um cliente para um webservice baseado em SOAP.
-    - Standalone
-    - Em um managed server
-        + Pode ser feito usando @WebServiceRef
+7. Create a web service client for a RESTful web service
+    REST Client
+        * Jersey Client API
+            Client client = Client.create();
+            WebResource webResource = client.resource(url);
+                webResource.get/post/put...
+                webResource.accept(mimetype)
+                webResource.entity(value, mimetype)
 
-    - Dymanic proxy client: Classes compiladas a partir da SEI fornecida.
-        + Geradas a partir do wsimport:
-            + SEI Service class;
-            + Exceptions da wsdl:fault;
-            + JAXB generated classes;
-        + Os proxys dinâmicos extendem a classe javax.lang.reflect.Proxy e são invocados de forma síncrona, assíncrona ou one-way
+        * Java SE Client
 
-    - Dispatch client: Para ser usando quando se quer trabalhar as mensagens a nivel de XML, ou quando não quer usar artefatos gerados
-        + O cliente é javax.xml.ws.Dispatch e é de forma síncrona, assíncrona ou one-way
-        + Quando usa o modo MESSAGE, o cliente é responsável por fornecer toda a mensagem SOAP (Envelope, Header e Body);
-        + Quando usa o modo PAYLOAD, o cliente é responsável somente por fornecer o <soap:Body>, o JAX-WS inclui ele num <soap:Envelope>;
+8. Create a SOAP based web service using Java SE platform.
+    8.1. Create a web service starting from a WSDL file using JAX-WS.
+    8.2. Create a web service starting from a Java source using JAX-WS.
+
+9. Create handlers for SOAP web services.
+    9.1. Configure SOAP and logical handlers on the server side.
+    9.2. Configure SOAP and logical handlers on the client side.
+
+10. Create low-level SOAP web services. (Java API for XML Processing (JAXP))
+    Simple API for XML Parsing (SAX) - Fazer parse de dados como uma stream de eventos - Rápido e eficiênte, ideal para
+        processamento sem estado. Menos memória que do DOM, pois não constrói uma representação interna.
+    Streaming API for XML (StAX) standard - Se existe um estado a ser mantido, usar esse
+    Document Object Model (DOM) - Fazer o parse de dados montando uma representação num objeto - Mais lento que o SAX,
+        pois constrói representação interna num objeto. Bastante útil quando precisa modificar a estrutura do XML;
+    Extensible Stylesheet Language Transformations (XSLT) - Para transformação de dados;
+
+    APIs definidas no pacote 'javax.xml.parsers'. Contém as classes de factory SAXParserFactory, DocumentBuilderFactory, and TransformerFactory que dão as classes SAXParser, a DocumentBuilder, e um XSLT transformer
 
 
-* Jersey Client API
+11. Use MTOM and MIME in a SOAP web service.
+    11.1. Use MTOM on the service.
+    11.2. Use MTOM on the client.
+
+12. Use WS-Addressing with a SOAP web service
+    12.1. Use Addressing on the service
+    12.2. Use Addressing on the client.
+
+13. Configure Message Level security for a SOAP web service
+
+14. Apply best practices to design and implement web services.
