@@ -1,4 +1,4 @@
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch10s01;
+package org.econfortin.ocejwsdstudy.by.boot.ch10s01;
 
 import org.xml.sax.XMLReader;
 

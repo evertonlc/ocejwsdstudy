@@ -55,15 +55,54 @@
     9.1. Configure SOAP and logical handlers on the server side.
     9.2. Configure SOAP and logical handlers on the client side.
 
-10. Create low-level SOAP web services. (Java API for XML Processing (JAXP))
-    Simple API for XML Parsing (SAX) - Fazer parse de dados como uma stream de eventos - Rápido e eficiênte, ideal para
-        processamento sem estado. Menos memória que do DOM, pois não constrói uma representação interna.
-    Streaming API for XML (StAX) standard - Se existe um estado a ser mantido, usar esse
-    Document Object Model (DOM) - Fazer o parse de dados montando uma representação num objeto - Mais lento que o SAX,
-        pois constrói representação interna num objeto. Bastante útil quando precisa modificar a estrutura do XML;
-    Extensible Stylesheet Language Transformations (XSLT) - Para transformação de dados;
+10. Create low-level SOAP web services.
+    10.1. Java API for XML Processing (JAXP)
+        Simple API for XML Parsing (SAX) - Fazer parse de dados como uma stream de eventos - Rápido e eficiênte, ideal para
+            processamento sem estado. Menos memória que do DOM, pois não constrói uma representação interna.
+        Streaming API for XML (StAX) standard - Se existe um estado a ser mantido
+            Cursor API - XMLStreamReader, XMLStreamWriter (Eficiência)
+            Iterator API - XMLEventReader, XMLEventWriter (Flexibilidade, extensibilidade, facilidade de desenvolvimento). Permite leitura e escrita, diferente do SAX que só permite leitura
+        Document Object Model (DOM) - Fazer o parse de dados montando uma representação num objeto - Mais lento que o SAX,
+            pois constrói representação interna num objeto. Bastante útil quando precisa modificar a estrutura do XML;
+        Extensible Stylesheet Language Transformations (XSLT) - Para transformação de dados;
+        APIs definidas no pacote 'javax.xml.parsers'. Contém as classes de factory SAXParserFactory, DocumentBuilderFactory, and TransformerFactory que dão as classes SAXParser, a DocumentBuilder, e um XSLT transformer
 
-    APIs definidas no pacote 'javax.xml.parsers'. Contém as classes de factory SAXParserFactory, DocumentBuilderFactory, and TransformerFactory que dão as classes SAXParser, a DocumentBuilder, e um XSLT transformer
+    10.2. Java Architecture for XML Binding (JAXB)
+        Fornece uma forma de fazer o bind entre XML schemas e a representação Java.
+        Fornece mecanismos para fazer o unmarshalling de documentos XML em árvores java e o prcesso reverso.
+        Fornece uma forma de gerar documentos XML de objetos java.
+
+        Bind process
+        1. Gera classes baseadas em um esquema XML;
+        2. Compila as classes
+        3. Unmarshal: Converte o XML em uma árvore
+        4. Generate content tree
+        5. Validate (opcional)
+        6. Process content (Modificar os dados XML representados pela árvore por interfaces geradas pelo compilador)
+        7. Marshal: Converte os dados na árvore e gera um ou mais documentos XML)
+
+        javax.xml.bind.JAXBContext
+            - interface para geranciar XML/Java binding para unmarshal, marshal e validation
+            - Criado através do newInstance(contextPath), onde o contextPath é uma lista de pacotes que contém classes derivadas
+                de algum esquema
+        javax.xml.bind.Unmarshaller
+            - interface usada para fazer a deserialização de XML em árvores de objetos java, podendo fazer validação dos dados enquanto desempacota.
+        javax.xml.bind.Marshaller
+            - interface usada para fazer a serialização de árvores de objetos java em XML.
+
+        Validation
+            - Fail-fast: Runtime check
+            - On-demand: Aplicação pode chamar Validator.validade na java content tree;
+    10.3. Use Provider API to create a web service.
+        SAAJ - API do java para enviar e receber mensagens SOAP. Classes dentro do javax.xml.soap
+            SOAPMessage, SOAPPart, SOAPEnvelope, SOAPHeader, SOAPBody, SOAPBodyElement
+            SOAPFault <faultstring, faultcode>
+
+        10.3.2.  Process only the SOAP body, using JAXB.
+
+
+
+
 
 
 11. Use MTOM and MIME in a SOAP web service.

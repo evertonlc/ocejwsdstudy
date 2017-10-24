@@ -1,5 +1,5 @@
 
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02;
+package org.econfortin.ocejwsdstudy.by.boot.ch06s02;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

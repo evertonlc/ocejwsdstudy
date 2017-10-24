@@ -1,5 +1,5 @@
 
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02;
+package org.econfortin.ocejwsdstudy.by.boot.ch06s02;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -23,13 +23,13 @@ public class CatalogService
 {
 
     private final static URL CATALOGSERVICE_WSDL_LOCATION;
-    private final static Logger logger = Logger.getLogger(org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02.CatalogService.class.getName());
+    private final static Logger logger = Logger.getLogger(CatalogService.class.getName());
 
     static {
         URL url = null;
         try {
             URL baseUrl;
-            baseUrl = org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02.CatalogService.class.getResource(".");
+            baseUrl = CatalogService.class.getResource(".");
             url = new URL(baseUrl, "http://localhost:8080/ocejwsdstudy/CatalogService?wsdl");
         } catch (MalformedURLException e) {
             logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:8080/ocejwsdstudy/CatalogService?wsdl', retrying as a local file");
@@ -43,7 +43,7 @@ public class CatalogService
     }
 
     public CatalogService() {
-        super(CATALOGSERVICE_WSDL_LOCATION, new QName("http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogService"));
+        super(CATALOGSERVICE_WSDL_LOCATION, new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogService"));
     }
 
     /**
@@ -53,7 +53,7 @@ public class CatalogService
      */
     @WebEndpoint(name = "CatalogPort")
     public Catalog getCatalogPort() {
-        return super.getPort(new QName("http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class);
+        return super.getPort(new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class);
     }
 
     /**
@@ -65,7 +65,7 @@ public class CatalogService
      */
     @WebEndpoint(name = "CatalogPort")
     public Catalog getCatalogPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class, features);
+        return super.getPort(new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class, features);
     }
 
 }

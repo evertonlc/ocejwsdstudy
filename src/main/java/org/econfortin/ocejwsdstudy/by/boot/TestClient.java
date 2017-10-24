@@ -1,4 +1,4 @@
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context;
+package org.econfortin.ocejwsdstudy.by.boot;
 
 import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPException;
@@ -12,8 +12,8 @@ import java.net.URL;
 
 public class TestClient {
 
-    private static final String Namespace = "http://context.message.java.boot.by.ocejwsdstudy.econfortin.org/";
-    private static final String EscapedNamespace = "\'http://context.message.java.boot.by.ocejwsdstudy.econfortin.org/\'";
+    private static final String Namespace = "http://java.boot.by.ocejwsdstudy.econfortin.org/";
+    private static final String EscapedNamespace = "\'http://java.boot.by.ocejwsdstudy.econfortin.org/\'";
 
     public static void main(String[] args) throws Exception {
         URL url;

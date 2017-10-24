@@ -1,4 +1,4 @@
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context;
+package org.econfortin.ocejwsdstudy.by.boot;
 
 import javax.annotation.Resource;
 import javax.jws.WebService;

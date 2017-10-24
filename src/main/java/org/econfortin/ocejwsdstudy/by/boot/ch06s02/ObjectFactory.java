@@ -1,5 +1,5 @@
 
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02;
+package org.econfortin.ocejwsdstudy.by.boot.ch06s02;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -24,8 +24,8 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetTitleResponse_QNAME = new QName("http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", "getTitleResponse");
-    private final static QName _GetTitle_QNAME = new QName("http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", "getTitle");
+    private final static QName _GetTitleResponse_QNAME = new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "getTitleResponse");
+    private final static QName _GetTitle_QNAME = new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "getTitle");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02
@@ -54,7 +54,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link GetTitleResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", name = "getTitleResponse")
+    @XmlElementDecl(namespace = "http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", name = "getTitleResponse")
     public JAXBElement<GetTitleResponse> createGetTitleResponse(GetTitleResponse value) {
         return new JAXBElement<GetTitleResponse>(_GetTitleResponse_QNAME, GetTitleResponse.class, null, value);
     }
@@ -63,7 +63,7 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link GetTitle }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", name = "getTitle")
+    @XmlElementDecl(namespace = "http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", name = "getTitle")
     public JAXBElement<GetTitle> createGetTitle(GetTitle value) {
         return new JAXBElement<GetTitle>(_GetTitle_QNAME, GetTitle.class, null, value);
     }

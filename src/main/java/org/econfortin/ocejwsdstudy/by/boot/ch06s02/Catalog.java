@@ -1,5 +1,5 @@
 
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02;
+package org.econfortin.ocejwsdstudy.by.boot.ch06s02;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -16,7 +16,7 @@ import javax.xml.ws.ResponseWrapper;
  * Generated source version: 2.1
  * 
  */
-@WebService(name = "Catalog", targetNamespace = "http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/")
+@WebService(name = "Catalog", targetNamespace = "http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/")
 @XmlSeeAlso({
     ObjectFactory.class
 })
@@ -31,8 +31,8 @@ public interface Catalog {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getTitle", targetNamespace = "http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", className = "org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02.GetTitle")
-    @ResponseWrapper(localName = "getTitleResponse", targetNamespace = "http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", className = "org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02.GetTitleResponse")
+    @RequestWrapper(localName = "getTitle", targetNamespace = "http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", className = "GetTitle")
+    @ResponseWrapper(localName = "getTitleResponse", targetNamespace = "http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", className = "GetTitleResponse")
     public String getTitle(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);

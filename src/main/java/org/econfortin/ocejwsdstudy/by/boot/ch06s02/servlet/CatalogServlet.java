@@ -1,7 +1,7 @@
-package org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02.servlet;
+package org.econfortin.ocejwsdstudy.by.boot.ch06s02.servlet;
 
-import org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02.Catalog;
-import org.econfortin.ocejwsdstudy.by.boot.java.message.context.ch06s02.CatalogService;
+import org.econfortin.ocejwsdstudy.by.boot.ch06s02.CatalogService;
+import org.econfortin.ocejwsdstudy.by.boot.ch06s02.Catalog;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
