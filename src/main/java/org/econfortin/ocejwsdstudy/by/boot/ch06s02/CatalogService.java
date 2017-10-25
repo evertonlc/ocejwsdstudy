@@ -1,14 +1,14 @@
 
 package org.econfortin.ocejwsdstudy.by.boot.ch06s02;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Logger;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import javax.xml.ws.WebEndpoint;
 import javax.xml.ws.WebServiceClient;
 import javax.xml.ws.WebServiceFeature;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.logging.Logger;
 
 
 /**
@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "CatalogService", targetNamespace = "http://ch06s02.context.message.java.boot.by.ocejwsdstudy.econfortin.org/", wsdlLocation = "http://localhost:8080/ocejwsdstudy/CatalogService?wsdl")
+@WebServiceClient(name = "CatalogService", targetNamespace = "http://ch06s02.boot.by.ocejwsdstudy.econfortin.org/", wsdlLocation = "http://localhost:8080/ocejwsdstudy/CatalogService?wsdl")
 public class CatalogService
     extends Service
 {
@@ -43,7 +43,7 @@ public class CatalogService
     }
 
     public CatalogService() {
-        super(CATALOGSERVICE_WSDL_LOCATION, new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogService"));
+        super(CATALOGSERVICE_WSDL_LOCATION, new QName("http://ch06s02.boot.by.ocejwsdstudy.econfortin.org/", "CatalogService"));
     }
 
     /**
@@ -53,7 +53,7 @@ public class CatalogService
      */
     @WebEndpoint(name = "CatalogPort")
     public Catalog getCatalogPort() {
-        return super.getPort(new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class);
+        return super.getPort(new QName("http://ch06s02.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class);
     }
 
     /**
@@ -65,7 +65,7 @@ public class CatalogService
      */
     @WebEndpoint(name = "CatalogPort")
     public Catalog getCatalogPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://ch06s02.java.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class, features);
+        return super.getPort(new QName("http://ch06s02.boot.by.ocejwsdstudy.econfortin.org/", "CatalogPort"), Catalog.class, features);
     }
 
 }

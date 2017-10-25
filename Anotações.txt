@@ -94,23 +94,43 @@
             - Fail-fast: Runtime check
             - On-demand: Aplicação pode chamar Validator.validade na java content tree;
     10.3. Use Provider API to create a web service.
-        SAAJ - API do java para enviar e receber mensagens SOAP. Classes dentro do javax.xml.soap
+        SAAJ (SOAP with Attachments API for Java) - API do java para enviar e receber mensagens SOAP. Classes dentro do javax.xml.soap
             SOAPMessage, SOAPPart, SOAPEnvelope, SOAPHeader, SOAPBody, SOAPBodyElement
             SOAPFault <faultstring, faultcode>
 
         10.3.2.  Process only the SOAP body, using JAXB.
 
+    10.4.  Use Dispatch API to create a dynamic web service client.
+        A interface javax.xml.ws.Dispatch permite trabalhar com JAX-WS no nível do XML.
+        Suporta dois modos de uso:
+            - javax.xml.ws.Service.Mode.MESSAGE = O cliente é responsável por criar as estruturas específicas do protocolo.
+            - javax.xml.ws.Service.Mode.PAYLOAD = O cliente se preocupa somente com o conteúdo interno da mensagem.
+        Para se usar a Dispatch é necessário que a implementação suporte um dos seguintes tipos:
+            - javax.xml.transform.Source
+            - JAXB Objects
+            - javax.xml.soap.SOAPMessage
+            - javax.activation.DataSource (usadas somente quando usar o Dispatch que use o modo de binding HTTP)
+        Suporta 3 modos de invocação:
+            - Síncrono (invoke methods);
+            - Assíncrono (invokeAsync) - Pode receber o resultado via:
+                - Polling: invokeAsync(T msg) - Response é uma implementação de 'java.util.concurrent.Future<T>'
+                    while(objectResponse.isDone()) {}
+                - Callback: invokeAsync(T msg, javax.xml.ws.AsyncHandler<T> handler) - implementa a interface e trata no handler;
+            - OneWay (invokeOneWay - fire-and-forget)
 
+        BindingProviders - javax.xml.ws.BindingProvider
 
-
-
-
-11. Use MTOM and MIME in a SOAP web service.
+11. Use MTOM (Message Transmission Optimized Mechanism) and MIME in a SOAP web service.
+    Enviar dados binários em requisições SOAP.
     11.1. Use MTOM on the service.
     11.2. Use MTOM on the client.
 
 12. Use WS-Addressing with a SOAP web service
-    12.1. Use Addressing on the service
+    WS-Addressing is a World Wide Web Consortium (W3C) specification that aid interoperability between web services
+        by defining a standard way to address web services and to provide addressing information in messages.
+    - Endpoint references
+    - Message addressing properties
+    12.1. Use Addressing on the service.
     12.2. Use Addressing on the client.
 
 13. Configure Message Level security for a SOAP web service

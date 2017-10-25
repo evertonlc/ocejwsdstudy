@@ -1,11 +1,8 @@
 package org.econfortin.ocejwsdstudy.by.boot.ch10s03;
 
-import com.sun.xml.internal.messaging.saaj.soap.MessageFactoryImpl;
-
 import javax.activation.DataHandler;
 import javax.xml.namespace.QName;
 import javax.xml.soap.*;
-import java.io.Console;
 import java.net.URL;
 
 public class SOAPMessageBuilder {
@@ -30,7 +27,7 @@ public class SOAPMessageBuilder {
             </SOAP-ENV:Envelope>
 
          */
-        SOAPMessage message = MessageFactoryImpl.newInstance().createMessage();
+        SOAPMessage message = MessageFactory.newInstance().createMessage();
         SOAPPart soapPart = message.getSOAPPart();
         SOAPEnvelope envelope = soapPart.getEnvelope();
 

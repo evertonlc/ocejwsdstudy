@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints
+        xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime"
+        version="2.0">
+    <endpoint
+        name="MtomService"
+        implementation="org.econfortin.ocejwsdstudy.by.boot.ch11s01"
+        enable-mtom="true"
+        url-pattern="/hello"/>
+</endpoints>
