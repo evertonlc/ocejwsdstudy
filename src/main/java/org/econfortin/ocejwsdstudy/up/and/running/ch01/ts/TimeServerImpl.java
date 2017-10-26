@@ -1,6 +1,9 @@
 package org.econfortin.ocejwsdstudy.up.and.running.ch01.ts;
 
+import javax.annotation.Resource;
 import javax.jws.WebService;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
 import java.util.Date;
 
 /*
@@ -14,7 +17,12 @@ import java.util.Date;
  * service.port.name = TimeServerImplServicePort
  *
  */
+//@Stateless  //Tem que ter a @Stateless para ser um WebService e EJB
 public class TimeServerImpl implements TimeServer {
+
+    @Resource
+    private WebServiceContext webServiceContext;
+
     @Override
     public String getTimeAsString() {
         return new Date().toString();
@@ -22,6 +30,14 @@ public class TimeServerImpl implements TimeServer {
 
     @Override
     public long getTimeAsElapsed() {
+        try {
+            MessageContext messageContext = webServiceContext.getMessageContext();
+            //System.out.println(ejbContext);
+            System.out.println(messageContext);
+            Thread.currentThread().sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return new Date().getTime();
     }
 

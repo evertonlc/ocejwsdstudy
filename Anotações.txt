@@ -1,19 +1,49 @@
 1. Create an SOAP web service in a servlet container
     1.1. Create a web service starting from a WSDL file using JAX-WS
+        The wsimport tool generates JAX-WS portable artifacts, such as:
+        - Service Endpoint Interface (SEI)
+        - Service
+        - Exception class mapped from wsdl:fault (if any)
+        - Async Reponse Bean derived from response wsdl:message (if any)
+        - JAXB generated value types (mapped java classes from schema types)
     1.2. Create a web service using JAX-WS annotations
 
 2. Create a RESTful web service in a servlet container
     2.1. Create a web service using JAX-RS, refer to Jersey implementation for examples
 
 3. Create a SOAP based web service implemented by an EJB component
-    3.1. Create an EJB web service implementations using annotations (@Stateless or @Singleton)
-    3.2. Create a web service starting from a Java source using JAX-WS
+    The web service endpoint implementation class has the following requirements:
+    The class must be annotated with either the javax.jws.WebService or javax.jws.WebServiceProvider annotations.
+    The implementing class may explicitly reference an SEI through the endpointInterface element of the @WebService annotation, but is not required to do so. If no endpointInterface is specified in @WebService, an SEI is implicitly defined for the implementing class.
+    The business methods of the implementing class must be public, and must not be declared static or final.
+    Business methods that are exposed to web service clients must be annotated with javax.jws.WebMethod.
+    Business methods that are exposed to web service clients must have JAXB-compatible parameters and return types.
+    The implementing class must not be declared final and must not be abstract.
+    The implementing class must have a default public constructor.
+    The endpoint class must be annotated @Stateless.
+    The implementing class must not define the finalize method.
+    The implementing class may use the javax.annotation.PostConstruct or javax.annotation.PreDestroy annotations on its methods for life-cycle event callbacks.
+    The @PostConstruct method is called by the container before the implementing class begins responding to web service clients.
+    The @PreDestroy method is called by the container before the endpoint is removed from operation.
 
 4. Create a RESTful web service implemented by an EJB component
     4.1. Create a web service using JAX-RS from EJB classes.
 
 5. Configure Java EE security for a SOAP web service
+    @RolesAllowed - Lista de roles que podem acessar determinado
     5.1. Configure security requirements of service using Java EE-container based security (overlaps with steps in other tasks - repeated here for convenience)
+        Servlet end points can use:
+        - HTTP sessions
+        - Java EE 6 declarative security (controlled in web.xml)
+        - Java EE 6 programmatic security (controlled in servlet code).
+        EJB end points can use
+        - client-demarcated transactions
+        - container-managed transactions
+        - Method level security by @RolesAllowed annotation (N pode ser usado por servlet)
+     The support for security, specifically HTTP authentication and/or cookie management with Http(s)URLConnection is
+     limited due to constraints in the API. For HTTP authentication the java.net.Authenticator can be extended and statically registered.
+
+     Strong authentication requires a digital certificate that is signed by a Certificate Authority.
 
 6. Create a web service client for a SOAP based web service
     6.1. Create a standalone client.
@@ -44,7 +74,14 @@
                 webResource.get/post/put...
                 webResource.accept(mimetype)
                 webResource.entity(value, mimetype)
-
+            Class UriBuilder in javax.ws.rs.core package is used for building URIs.
+            URI templates are allowed in most components of a URI but their value is restricted to a particular component.
+                E.g.
+                UriBuilder.fromPath("{arg1}").build("a#b");
+                would result in encoding of the '#' such that the resulting URI is "a%23b".
+                To create a URI "a#b" use UriBuilder.fromPath("{arg1}").fragment("{arg2}").build("a", "b") instead.
+                URI template names and delimiters are never encoded but their values are encoded when a URI is built.
+                Template parameter regular expressions are ignored when building a URI, i.e. no validation is performed.
         * Java SE Client
 
 8. Create a SOAP based web service using Java SE platform.
@@ -52,6 +89,14 @@
     8.2. Create a web service starting from a Java source using JAX-WS.
 
 9. Create handlers for SOAP web services.
+    JAX-WS defines two types of handlers, logical handlers and protocol handlers
+        - Atuam apenas no nível de mensagem (payload) e são protocol-agnostic; Implementam javax.xml.ws.handler.LogicalHandler;
+        - Atuam no nível do protocolo, podem alterar header ou outras informações; Tipicamente para SOAP (javax.xml.ws.handler.soap.SOAPHandler)
+
+    A basic handler must implement three methods
+    - handleMessage( ): This is called for inbound and outbound messages.
+    - handleFault( ): This is called instead of handleMessage( ), when the message contains a protocol fault.
+    - close( ): This is called after the completion of message processing by all handlers for each web service invocation (after completion of MEP).
     9.1. Configure SOAP and logical handlers on the server side.
     9.2. Configure SOAP and logical handlers on the client side.
 
@@ -64,11 +109,14 @@
             Iterator API - XMLEventReader, XMLEventWriter (Flexibilidade, extensibilidade, facilidade de desenvolvimento). Permite leitura e escrita, diferente do SAX que só permite leitura
         Document Object Model (DOM) - Fazer o parse de dados montando uma representação num objeto - Mais lento que o SAX,
             pois constrói representação interna num objeto. Bastante útil quando precisa modificar a estrutura do XML;
-        Extensible Stylesheet Language Transformations (XSLT) - Para transformação de dados;
-        APIs definidas no pacote 'javax.xml.parsers'. Contém as classes de factory SAXParserFactory, DocumentBuilderFactory, and TransformerFactory que dão as classes SAXParser, a DocumentBuilder, e um XSLT transformer
+        Extensible Stylesheet Language Transformations (XSLT) - Modelo de programação para transformação de dados;
+        Transformation API for XML (TrAX) - Is a transformation API for XML that needs to keep a handle on the processed XML elements in order to apply transformation rules on them;
+
+        APIs definidas no pacote 'javax.xml.parsers'.
+        Contém as classes de factory SAXParserFactory, DocumentBuilderFactory, and TransformerFactory que dão as classes SAXParser, a DocumentBuilder, e um XSLT transformer
 
     10.2. Java Architecture for XML Binding (JAXB)
-        Fornece uma forma de fazer o bind entre XML schemas e a representação Java.
+        Fornece uma forma de fazer o bind entre XML schemas e a representação Java. (Não apenas ler a informação do XML)
         Fornece mecanismos para fazer o unmarshalling de documentos XML em árvores java e o prcesso reverso.
         Fornece uma forma de gerar documentos XML de objetos java.
 
@@ -120,8 +168,9 @@
 
         BindingProviders - javax.xml.ws.BindingProvider
 
-11. Use MTOM (Message Transmission Optimized Mechanism) and MIME in a SOAP web service.
-    Enviar dados binários em requisições SOAP.
+11. Use MTOM (Message Transmission Optimized Mechanism) and MIME in a SOAP web service. javax.xml.ws.soap.MTOM
+    JAX-WS supports the use of SOAP Message Transmission Optimized Mechanism (MTOM) for sending binary attachment data.
+    By enabling MTOM, you can send and receive binary data optimally without incurring the cost of data encoding needed to embed the binary data in an XML document.
     11.1. Use MTOM on the service.
     11.2. Use MTOM on the client.
 
@@ -130,9 +179,49 @@
         by defining a standard way to address web services and to provide addressing information in messages.
     - Endpoint references
     - Message addressing properties
+    - FaultAction
+
+    Web Services Addressing provides transport-neutral mechanisms to address Web services and messages.
+    JAX-WS 2.2 specification requires support for W3C Core, SOAP Binding and Addressing 1.0 - Metadata specifications and
+    defines standard API to enable/disable W3C WS-Addressing on the client and service endpoint. In addition to that,
+    JAX-WS RI also supports Member Submission version of WS-Addressing.
+    The member submission version is supported in an implementation specific way.
+
     12.1. Use Addressing on the service.
     12.2. Use Addressing on the client.
 
 13. Configure Message Level security for a SOAP web service
+    WS-Security
+    - (XKMS) XML Key Management Specification;
+    - (SAML) Security Assertion Markup Language - The single most important use case that SAML addresses is web browser single sign-on (SSO);
+    - XML Encryption - This document specifies a process for encrypting data and representing the result in XML;
+    - XML Digital Signature - XML signatures are digital signatures designed for use in XML transactions. The standard defines a schema for capturing the result of a digital signature operation applied to arbitrary (but often XML) data. Like non-XML-aware digital signatures (e.g., PKCS), XML signatures add authentication, data integrity, and support for non-repudiation to the data that they sign. However, unlike non-XML digital signature standards, XML signature has been designed to both account for and take advantage of the Internet and XML.
+    - XML Canonicalization - Canonical XML is a profile or subset of XML. Any XML document can be converted to Canonical XML, thus normalizing away specific kinds of minor differences while remaining an XML document. ;
+    - WS-Security;
+        - The FaultAction annotation cannot be used inside an Action annotation.
+        - The FaultAction annotation is used inside an Action annotation to allow an explicit association of
+            a WS-Addressing Action message addressing property with the fault messages of the WSDL operation mapped from the exception class.
+        - The wsam:Action attribute value in the fault message in the generated WSDL operation mapped for
+            className class is equal to the corresponding value in the FaultAction. For the exact computation of
+            wsam:Action values for the fault messages, refer to the algorithm in the JAX-WS specification.
 
 14. Apply best practices to design and implement web services.
+
+    - WS-I Basic Profile 1.1 accept both rpc-literal and document-literal encoding styles.
+
+    A WSDL document describes a web service.
+    A WSDL binding describes how the service is bound to a messaging protocol, particularly the SOAP messaging protocol.
+    A WSDL SOAP binding can be either a Remote Procedure Call (RPC) style binding or a document style binding.
+    A SOAP binding can also have an encoded use or a literal use.
+    This gives you four style/use models:
+        1. RPC/encoded
+        2. RPC/literal
+        3. Document/encoded
+        4. Document/literal
+
+    There are two principal architectures for Web service interfaces: synchronous Web services and asynchronous Web services. These two architectures are distinguished by their request-response handling.
+    With synchronous services, clients invoke a request on a service and then suspend their processing while they wait for a response.
+    With asynchronous services, clients initiate a request to a service and then resume their processing without waiting for a response.
+    The service handles the client request and returns a response at some later point, at which time the client retrieves the response and proceeds with its processing.
+    When there is a human approval step involed in a service, it must be implemented as asynchronous service.
+    Another case also valid since the dependant system is having availability problems. Both the cases return response at some later point without responding immediatly.

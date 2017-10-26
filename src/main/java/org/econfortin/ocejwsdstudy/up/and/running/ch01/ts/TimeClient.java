@@ -6,7 +6,7 @@ import java.net.URL;
 
 class TimeClient {
     public static void main(String args[ ]) throws Exception {
-        URL url = new URL("http://localhost:8080/ts?wsdl");
+        URL url = new URL("http://localhost:8080/ocejwsdstudy/TimeServerImpl?wsdl");
         // Qualified name of the service:
         // 1st arg is the service URI
         // 2nd is the service name published in the WSDL
