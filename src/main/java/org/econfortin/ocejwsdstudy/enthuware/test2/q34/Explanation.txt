@@ -1,0 +1,16 @@
+The Accept header is important in JAX-RS.
+
+From the JAX-RS 1.1 spec: An implementation MUST NOT invoke a method whose effective value of @Produces does not match the request Accept header.
+
+In the section 3.7.2 Request Matching you will find the following explanation:
+Determining the best matching media types follows the general rule: n/m > n/* > */*, i.e. a method that explicitly
+consumes the request media type or produces one of the requested media types is sorted before a method that consumes or
+produces */*. Quality parameter values in the accept header are also considered such that methods that produce media
+types with a higher acceptable q-value are sorted ahead of those with a lower acceptable q-value (i.e. n/m;q=1.0 > n/m;q=0.7)
+
+A browser will return "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" which is read as:
+1) I prefer text/html and application/xhtml+xml (q=100% or q=1.0 in this case) , but because text/html is mentioned
+    first I will look for a method that has a @Produces of text/html, if that is not available I will look for
+    a method that has a @Produces of application/xhtml+xml
+2) If both media types of 1) are not available, I will look for a method that produces application/xml (q is 90%),
+    and if that is also not available, I will look for a method that produces all media types */* (q=80%).

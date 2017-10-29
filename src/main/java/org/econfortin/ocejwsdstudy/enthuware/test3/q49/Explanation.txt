@@ -1,0 +1,12 @@
+From JSR-181
+protocol-bindings
+Specifies the message binding for which the handler chain is used.
+The binding is specified as a URI or using one of the following aliases:
+##SOAP11_HTTP
+##SOAP11_HTTP_MTOM
+##SOAP12_HTTP
+##SOAP12_HTTP_MTOM
+##XML_HTTP
+For instance:
+<javaee:protocol-bindings>##SOAP12_HTTP</javaee:protocol-bindings>
+Attach the following handlers to the protocol binding SOAP v1.2 over HTTP.

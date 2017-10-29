@@ -1,0 +1,35 @@
+Handlers can be configured on the server side. What is/are the correct statement(s) about configuring Handlers of the server side?
+
+Handlers may be configured in the sun-jaxws.xml deployment descriptor.
+Handlers may be configured with the @HandlerChain annotation
+
+
+Handlers may be configured by using the setHandlerResolver() method. --This is only for the client side handlers.
+
+Qualquer handle resolver deve implementar a interface javax.xml.ws.handler.HandlerResolver
+
+Configuração de Handlers no cliente
+- Através do @HandlerChain no service gerado. Ou seja, os handlers serão executados em todas as chamadas de qualquer Proxies and Dispatch instances
+- Através do service.setHandlerResolver()
+- Configurando o BindingProvider
+    Proxy
+        Binding b = ((BindingProvider)port).getBinding();
+        b.setHandlerChain(chain);
+    Dispatch
+        Dispatch<Source> dispatch = service.createDispatch(port, Source.class, Service.Mode.PAYLOAD);
+        Binding binding = dispatch.getBinding();
+        binding.setHandlerChain(chain);
+- Através do @HandlerChain on @WebServiceRef
+    @WebServlet(urlPatterns="/log") public class LogServlet extends HttpServlet {
+        @HandlerChain(file=”handler-chain.xml”)
+        @WebServiceRef(LogWebService.class)
+        LogLog l;
+    }
+
+Configurção dos Handlers no servidor
+- Através do sun-jaxws.xml;
+- Através do @HandlerChain;
+- Através da Handler Chain Customization
+- Através de webservices.xml
+    In JAX-WS 2.x and EE6, the deployment descriptor webservices.xml has become optional.
+    You either package it in the WEB-INF directory of the WAR module or in the META-INF directory if it is an EJB module.

@@ -1,0 +1,15 @@
+How do we implement application authentication in a JAX-WS application on the client side?
+
+
+MathTableImplService service = new MathTableImplService();
+MathTableService port = service.getMathTableImplPort();
+// Get the RequestContext
+Map<String, Object> context = ((BindingProvider)port).getRequestContext();
+// create an HTTP header with username="un" and password="pwd"
+Map<String, List<String>> headers = new HashMap<String, List<String>>();        
+headers.put(BindingProvider.USERNAME_PROPERTY, Collections.singletonList("un"));
+headers.put(BindingProvider.PASSWORD_PROPERTY, Collections.singletonList("pwd"));
+// Add the HTTP header to the RequestContext
+context.put(MessageContext.HTTP_REQUEST_HEADERS, headers);
+// call
+Web Service port.getTable(new Integer(5));

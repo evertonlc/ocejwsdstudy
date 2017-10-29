@@ -1,0 +1,25 @@
+From the XML Signature Syntax and Processing specifications by W3C
+
+Detached Signature
+    <xmlcontent> . . .
+    </xmlcontent>
+    <signature>
+        <referencetoxmlcontent>...
+        </referencetoxmlcontent>
+    </signature>
+
+Enveloping Signature
+<signature>
+    <referencetoxmlcontent>... </referencetoxmlcontent>    
+    <object>
+        <xmlcontent> . . . </xmlcontent>
+    </object>
+</signature>
+
+Enveloped Signature
+<xmlcontent>
+    <restofxmlcontent> . . . </restofxmlcontent>
+    <signature>. . .        
+        <referencetoxmlcontent>... </referencetoxmlcontent>
+    </signature>
+</xmlcontent>

@@ -1,0 +1,8 @@
+From Basic Profile v1.1
+
+You can have multiple wsdl:portType elements in a WSDL.
+
+R2304 A wsdl:portType in a DESCRIPTION MUST have operations with distinct values for their name attributes.
+
+Note that this requirement applies only to the wsdl:operations within a given wsdl:portType.
+A wsdl:portType may have wsdl:operations with names that are the same as those found in other wsdl:portTypes.

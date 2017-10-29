@@ -1,0 +1,48 @@
+The following message is sent from Sender to Receiver travelling through 2 intermediate nodes.
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Header>
+      <first:Trans
+            soap:actor="http://enthuware.ws.notes/fifthNode/"
+            xmlns:first="http://enthuware.ws.notes/fifth/">1</first:Trans>
+      <second:Time
+            soap:actor="http://enthuware.ws.notes/secondNode/"
+            xmlns:second="http://enthuware.ws.notes/second/">2</second:Time>
+      <third:Stamp
+            xmlns:third="http://enthuware.ws.notes/third/">3</third:Stamp>
+      <fourth:Jump
+            soap:actor="http://schemas.xmlsoap.org/soap/actor/next"
+            xmlns:fourth="http://enthuware.ws.notes/fourth/">4</fourth:Jump>
+   </soap:Header>
+</soap:Envelope>
+
+The nodes identified by their URI's:
+Sender: http://enthuware.ws.notes/firstNode/
+Node 2: http://enthuware.ws.notes/secondNode/
+Node 3: http://enthuware.ws.notes/thirdNode/
+Receiver: http://enthuware.ws.notes/fourthNode/
+What happens to the header elements when this message travels from Sender to Receiver?
+
+first:Trans não vai ser processado por nenhum nodo, visto que não existe ator no caminho para processar o soap:actor dele
+second:time vai ser processado e removido pelo Node 2
+third:stamp vai ser processado pelo Receiver, já que não existe soap:actor para processá-lo
+fourth:Jump vai ser processado e removido pelo Node 2.
+
+SOAP v1.1
+A SOAP message travels from the originator to the ultimate destination, potentially by passing through a set of SOAP
+intermediaries along the message path.
+A SOAP intermediary is an application that is capable of both receiving and forwarding SOAP messages.
+Both intermediaries as well as the ultimate destination are identified by a URI.
+
+Not all parts of a SOAP message may be intended for the ultimate destination of the SOAP message but, instead, may be
+intended for one or more of the intermediaries on the message path. The role of a recipient of a header element is
+similar to that of accepting a contract in that it cannot be extended beyond the recipient. That is, a recipient
+receiving a header element MUST NOT forward that header element to the next application in the SOAP message path.
+The recipient MAY insert a similar header element but in that case, the contract is between that application and the
+recipient of that header element.
+
+The SOAP actor global attribute can be used to indicate the recipient of a header element. The value of the SOAP actor
+attribute is a URI. The special URI "http://schemas.xmlsoap.org/soap/actor/next" indicates that the header element is
+intended for the very first SOAP application that processes the message. This is similar to the hop-by-hop scope model
+represented by the Connection header field in HTTP.
+
+Omitting the SOAP actor attribute indicates that the recipient is the ultimate destination of the SOAP message.

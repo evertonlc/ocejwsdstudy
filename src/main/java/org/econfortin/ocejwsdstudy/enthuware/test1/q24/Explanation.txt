@@ -1,0 +1,24 @@
+What is the correct (but simplified) sequence of events in a WebService exchange using HTTPS without client validation?
+
+1) Client connects to Server on a certain domain name.
+2) Server sends Certificate with its public key, signed by CA (with CA's private key).
+3) Client gets CA's certificate (with CA's public key) from the browsers TrustStore.
+4) Client verifies signature on the Server's certificate with CA's public key.
+5) If verification is successful, the Client checks domain name of the Server on the certificate.
+6) Client generates symmetric key and encrypts with Server's public key and sends it to the Server.
+7) Server decrypts the package to get the symmetric key.
+8) Client and Server encrypt/decrypt traffic with the symmetric key.
+
+
+*****************In SSL encryption after the handshake is done with symmetric keys.*************************************
+
+There are two forms of encryption:
+Symmetric encryption (or pre-shared key encryption) uses a single key to both encrypt and decrypt data.
+Both the sender and the receiver need the same key to communicate.
+
+Asymmetric encryption (or public-key encryption) uses a separate key for encryption and decryption.
+Anyone can use the public key to encrypt a message. However, only the holder of the private key can decrypt a message.
+Important to know that is that encryption is done with the other side's public key and decryption is done by your own private key
+(hence the name public-key encryption):
+
+HTTPS is HTTP over SSL/TLS and uses both forms of encryption. During the initial handshake it makes use of Asymmetric encryption, and after that it uses Symmetric encryption for data exchange.

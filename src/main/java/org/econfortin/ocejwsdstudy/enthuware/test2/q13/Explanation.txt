@@ -1,0 +1,4 @@
+- The SwA response refers to the attachment by using the cid.
+    cid:c466240c-2fdd-47d4-8d3d-576ae6fbd77c@example.jaxws.sun.com
+- The MTOM response has an <xop:Include> element with a reference to the attachment.
+    <xop:Include xmlns:xop="http://www.w3.org/2004/08/xop/include" href="cid:7e05fa2b-fe97-40f6-94c3-c0e3401f40b@example.jaxws.sun.com"/>

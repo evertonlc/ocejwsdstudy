@@ -1,0 +1,24 @@
+MTOM  can be used to send attachments to and from Web services. Identify the correct statement(s) about enabling MTOM on the server side.
+
+The standard (W3C) for sending binary attachments is MTOM (Message Transmission Optimization Mechanism), which is based on XOP (XML-Binary Optimized Packaging).
+1) Via a @MTOM annotation. To enable MTOM in the Web Service, specify the @MTOM annotation on the SIB;
+@WebService
+@MTOM
+public class GifServiceImpl { . . . }
+
+2) Via the enable-mtom attribute in the webservices.xml or in the sun-jaxws.xml deployment descriptor;
+<endpoints xmlns='http://java.sun.com/xml/ns/jax-ws/ri/runtime' version='2.0'>
+    <endpoint name="GifServiceImplPort" implementation="notes.ws.GifServiceImpl"
+    url-pattern="/run"
+    enable-mtom="true"/>
+</endpoints>
+
+3) Via the @BindingType annotation;
+@WebService
+@BindingType(value = SOAPBinding.SOAP11HTTP_MTOM_BINDING)
+public class GifServiceImpl { . . . }
+
+4) Via a MTOM policy in the WSDL;
+<wsp:Policy wsu:Id="GifServiceImplPortBinding_MTOM_Policy-GifServiceImplPortBinding_MTOM_Policy">
+      <ns1:OptimizedMimeSerialization xmlns:ns1="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" wsp:Optional="true"/>
+</wsp:Policy>

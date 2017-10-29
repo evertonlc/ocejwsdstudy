@@ -1,0 +1,23 @@
+Important to know:
+- An EJB always lives inside an EJB-container
+- The JAX-RS runtime (and web-components like Servlets) in a Web-container. (check Java EE6 specifications JSR-316 Platform overview)
+
+Jersey requires EJB's to be packaged in combination with a war file (to bootstrap the JAX-RS runtime).
+The EJB classes can be packaged inside the war-file or in an ejb-jar file inside an ear-file.
+
+JAX-RS is only required to support local EJB's
+From JAX-RS v1.1.
+
+6.2 Java EE Container
+"In a product that also supports EJB, an implementation MUST support use of stateless and singleton session beans as root
+resource classes, providers and Application subclasses. JAX-RS annotations MAY be applied to a bean’s local interface or
+directly to a no-interface bean.
+
+From the EE6 (JSR-316) specs:
+----
+EE.6.3
+"In a Java EE product that includes both an EJB-container and a Web-container, both containers are required to support
+access to local enterprise beans."
+
+For JAX-RS this requires the EJB-container and Web-container to run in the same JVM. The JAX-RS runtime locally accesses
+the EJB's in the EJB-container from the Web-container.

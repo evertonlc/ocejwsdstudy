@@ -1,0 +1,15 @@
+Metro is open to various security token models. Which of the following token models are supported?
+
+From the WS-Security specifications:
+
+The specification allows a variety of signature formats, encryption algorithms and multiple trust domains, and is open to various security token models, such as:
+- UserID/Password credentials,
+- X.509 certificates,
+- Kerberos tickets,
+- SAML Assertions, and
+- custom-defined tokens
+
+From the Metro Userguide (https://metro.java.net/guide/ch01.html#ahias)
+
+1.4. Metro Specifications
+Security Profiles (OASIS standards) - since v1.3 All 1.0 and 1.1 profiles listed (https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=wss) except Web Services Security REL Token Profile V1.0

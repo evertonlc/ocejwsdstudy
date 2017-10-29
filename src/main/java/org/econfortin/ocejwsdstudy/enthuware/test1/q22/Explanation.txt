@@ -1,0 +1,8 @@
+WS-I Basic Profile v1.1 does allow the use of DTD's.
+
+From Basic Profile v1.1:
+
+"XML DTDs and PIs may introduce security vulnerabilities, processing overhead and semantic ambiguity when used in envelopes.
+As a result, certain XML constructs are disallowed by section 3 of SOAP 1.1.
+
+R1008 An ENVELOPE MUST NOT contain a Document Type Declaration."

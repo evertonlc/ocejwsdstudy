@@ -1,0 +1,6 @@
+SwA - SOAP with Attachments
+
+SwA can be activated in two ways:
+1) by using the @XmlAttachmentRef annotation.
+    - A field/property must always map to the DataHandler class
+2) by adding the ref:swaRef in your WSDL

@@ -1,0 +1,9 @@
+SOAP encoding is part of the SOAP v1.1 specifications. What are the correct statements about the encoding of compound values (valores compostos)?
+
+Compound values can be encoded just like simple values.
+It is possible to have compound values with several accessors each named the same.
+
+SOAP encoding is not conform Basic Profile v1.1. however it is part of the SOAP v1.1. specifications and people have run into questions about it.
+
+Please read and study the SOAP Encoding chapter of the SOAP v1.1. specs (http://www.w3.org/TR/2000/NOTE-SOAP-20000508/#_Toc478383512)
+Especially the paragraph of 5.1 Rules for Encoding Types in XML.

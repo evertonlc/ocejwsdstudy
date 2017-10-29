@@ -1,0 +1,21 @@
+We want to attach handlers only to a WebService with a serviceName of "RunningService".
+What is the correct way to configure that requirement in the file indicated by the @HandlerChain(file="handler-chain.xml") annotation.
+
+From JSR-181
+
+service-name-pattern
+Specifies the QName of the WSDL service element defining the service to which the handler chain is bound. You can use * as a wildcard when defining the QName.
+
+For instance: Exact Name: service-name-pattern="ns1:EchoService"
+In this case, handlers specified in this handler-chain element will apply to all ports with this exact service name.
+The namespace prefix must have been declared in a namespace declaration attribute in either the start-tag of the element
+where the prefix is used or in an an ancestor element (in effect, an element in whose content the prefixed markup occurs)
+
+Pattern : service-name-pattern="ns1:EchoService*"
+In this case, handlers specified in this handler-chain element will apply to all ports whose Service names are like
+EchoService1, EchoServiceFoo etc.
+The namespace prefix must have been declared in a namespace declaration attribute in either the start-tag of the element
+where the prefix is used or in an an ancestor element (in effect, an element in whose content the prefixed markup occurs)
+
+Wild Card : service-name-pattern="*"
+In this case, handlers specified in this handler-chain element will apply to ports of all service names.

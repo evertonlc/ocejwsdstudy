@@ -1,0 +1,2 @@
+Boolean javax.xml.ws.session.maintain
+Used by a client to indicate whether it is prepared to participate in a service endpoint initiated session. The default value is false.

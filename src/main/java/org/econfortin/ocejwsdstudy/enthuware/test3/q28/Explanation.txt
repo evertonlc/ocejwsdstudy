@@ -1,0 +1,3 @@
+WS-I Basic Profile v1.1 compliant?
+
+The Basic Profile v1.1 prefers the use of literal, non-encoded XML. (i.e. document/encoded and rpc/encoded are not Basic Profile v1.1 compliant)

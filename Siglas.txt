@@ -1,0 +1,46 @@
+(WSIT) - Web Services Interoperability Technology
+    From the WSIT tutorial v1.0
+
+    The security standards are
+    1) Web Services Security
+    2) Web Services Security Policy
+    3) Web Services Trust
+    4) Web Services Secure Conversation
+
+    The supporting standards are:
+    1) Web Services Policy
+    2) Web Services Addressing
+
+
+(MTOM) - Message Transmission Optimization Mechanism
+(SwA) - SOAP with Attachments
+(XOP) - XML-binary Optimized Packaging
+(I-Stack) - The Integrated Stack consists of JAX-WS, JAXB, StAX, SAAJ.
+(STS) - Security Token Service
+    Is a software based identity provider responsible for issuing security tokens, especially software tokens, as part
+    of a claims-based identity system.
+(XMKS) XML Key Management Specification
+    Specifies protocols for distributing and registering public keys.
+(SAML) - Security Assertion Markup Language
+    Deals with Authentication, Authorization and Multi-domain web Single Sign-On (SSO) which is arguably the most
+    important use case for which SAML is applied.
+(XACML) - eXtensible Access Control Markup Language
+    The standard defines a declarative access control policy language implemented in XML and a processing model
+    describing how to evaluate access requests according to the rules defined in policies.
+
+From WS-Security
+    This specification provides three main mechanisms: ability to send security tokens as part of a message, message
+    integrity, and message confidentiality.
+The specification addresses:
+Authentication - attach security tokens to SOAP messages
+Integrity & Non-repudiation	 - signing of SOAP messages
+Confidentiality - encrypting of SOAP messages
+
+
+Check https://jax-ws.java.net/2.2.1/docs/mtom-swaref.html http://www.w3.org/Submission/soap11mtom10/
+From W3C SOAP 1.1 Binding for MTOM 1.0  3.1 Serialization of a SOAP message
+When sending a SOAP message using the MIME Multipart/Related Serialization, the SOAP envelope Infoset is serialized into XML 1.0 as specified in [XOP] 3.1 Creating XOP packages.
+Specifically:  Specifically: The content-type of the outer package MUST be multipart/related.
+The type parameter of the content-type header of the outer package MUST have a value of application/xop+xml
+
+The content-type of the root part MUST be application/xop+xml The type parameter of the content-type header of the root part MUST specify a content-type of text/xml.

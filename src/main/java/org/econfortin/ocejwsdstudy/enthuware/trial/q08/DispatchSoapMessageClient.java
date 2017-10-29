@@ -1,5 +1,7 @@
 package org.econfortin.ocejwsdstudy.enthuware.trial.q08;
 
+import org.econfortin.ocejwsdstudy.enthuware.test1.q26.MyHandleResolverClient;
+
 import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPException;
 import javax.xml.transform.Source;
@@ -17,7 +19,7 @@ public class DispatchSoapMessageClient {
     public static void main(String[] args) throws Exception {
         URL url;
         try {
-            url = new URL("http://localhost:9999/math?wsdl");
+            url = new URL("http://localhost:9991/math?wsdl");
             QName serviceName = new QName(Namespace, "MathTableImplService");   //Nome do service + Service
             QName portName = new QName(Namespace, "MathTableImplPort");         //Nome do service + Port
             Service service = Service.create(url, serviceName);
@@ -25,6 +27,7 @@ public class DispatchSoapMessageClient {
              * Source - Passa a parte interna da mensagem, neste caso devemos usar modo PAYLOAD
              * SOAPMessage - Passa a mensagem completa, neste caso devemos usar o modo MESSAGE
              */
+            service.setHandlerResolver(new MyHandleResolverClient());
             Dispatch<Source> dispatch = service.createDispatch(portName, Source.class, Service.Mode.PAYLOAD);
             //Dispatch<SOAPMessage> dispatchMessage = service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE);    //Forma também correta, só que passando a mensagem completa
             Source response = dispatch.invoke(createContent());

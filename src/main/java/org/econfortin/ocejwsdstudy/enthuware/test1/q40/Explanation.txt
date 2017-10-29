@@ -1,0 +1,17 @@
+What are the correct statements about wsdl:message according to WSDL and JAX-WS specifications?
+
+- Each wsdl:part references a concrete schema definition using either the element or type attribute.
+- Document style:  Each wsdl:message element has a single wsdl:part child element that refers, via an element attribute,
+    to a global element declaration in the wsdl:types section.
+- RPC style: Zero or more wsdl:part child elements (one per method parameter and one for a non-void return value) that
+    refer, via a type attribute, to named type declarations in the wsdl:types section.
+
+
+JAX-WS 2.x Each wsdl:message element has one of the following:
+- Document style A single wsdl:part child element that refers, via an element attribute, to a global element declaration
+    in the wsdl:types section.
+- RPC style Zero or more wsdl:part child elements (one per method parameter and one for a non-void return value)
+    that refer, via a type attribute, to named type declarations in the wsdl:types section.
+
+WSDL 1.1 3.5
+soap:body If use is literal, then each part references a concrete schema definition using either the element or type attribute.

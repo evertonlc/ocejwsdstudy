@@ -1,0 +1,24 @@
+There is a RESTful Web Service (implemented by an EJB) that does some time consuming calculation.
+We want to secure this Web Service in order to only allow users in the role "administrator".
+Where can you configure the role-based method authorization?
+
+1) Method permissions on EJB's are either configured in the ejb-jar.xml:
+<method-permission>
+    <role-name>employee</role-name>
+    <method>
+        <ejb-name>EjbName</ejb-name>
+        <method-name>EjbMethod</method-name>
+    </method>
+</method-permission>
+
+2) Or by Annotations
+@RolesAllowed
+@PermitAll
+@DenyAll
+
+The annotations all look like:
+@Documented
+@Retention(value=RUNTIME)
+@Target(value={TYPE,METHOD})
+public @interface RolesAllowed
+which means that they can be used on the class (TYPE) or on a specific method (METHOD).

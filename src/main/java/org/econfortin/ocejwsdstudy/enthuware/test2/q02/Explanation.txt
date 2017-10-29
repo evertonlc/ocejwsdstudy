@@ -1,0 +1,29 @@
+MTOM  can be used to send attachments to and from Web services.
+Identify the correct statement(s) about enabling MTOM on the client side.
+
+MTOM can be enabled in different ways on the client side:
+1) By doing nothing:  if the server WSDL advertises that it supports MTOM, the MTOM support in the client will be automatically enabled.
+2) By passing  the MTOMFeature as a parameter when creating the Web Service proxy or dispatch:
+    Proxy
+    GifService port = service.getPort(GifService.class, new MTOMFeature());
+    Dispatch
+    Dispatch<SOAPMessage> dispatch
+        = service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE, new MTOMFeature());
+3) By setting the enabled flag on the SOAPBinding
+    Proxy
+    ...
+    BindingProvider bp = (BindingProvider) port;
+    SOAPBinding binding = (SOAPBinding) bp.getBinding();
+    binding.setMTOMEnabled(true);
+
+    Dispatch
+    SOAPBinding binding = (SOAPBinding) dispatch.getBinding();
+    binding.setMTOMEnabled(true);
+    or
+    Service svc = Service.create(serviceName);
+    svc.addPort(portName,SOAPBinding.SOAP11HTTP_MTOM_BINDING,endpointUrl);
+4) By annotation (@MTOM) a Web Service reference:
+    @MTOM
+    @WebServiceRef(GifService.class)
+
+5) By Annotating (@MTOM) the @WebServiceRef

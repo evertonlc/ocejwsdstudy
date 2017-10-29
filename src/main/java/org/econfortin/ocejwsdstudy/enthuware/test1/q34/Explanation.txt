@@ -1,0 +1,22 @@
+What should be in the faultCode of the SOAP Fault element when the content of a certain SOAP header cannot be processed
+because the database connection is down?
+
+soap:Server
+
+The set of faultcode values defined in this document is:
+
+VersionMismatch - The processing party found an invalid namespace for the SOAP Envelope element (see section 4.1.2)
+
+MustUnderstand - An immediate child element of the SOAP Header element that was either not understood or not obeyed
+    by the processing party contained a SOAP mustUnderstand attribute with a value of "1" (see section 4.2.3)
+
+Client - The Client class of errors indicate that the message was incorrectly formed or did not contain the appropriate
+    information in order to succeed. For example, the message could lack the proper authentication or payment information.
+    It is generally an indication that the message should not be resent without change.
+    See also section 4.4 for a description of the SOAP Fault detail sub-element.
+
+Server - The Server class of errors indicate that the message could not be processed for reasons not directly attributable
+    to the contents of the message itself but rather to the processing of the message.
+    For example, processing could include communicating with an upstream processor, which didn't respond.
+    The message may succeed at a later point in time.
+    See also section 4.4 for a description of the SOAP Fault detail sub-element.

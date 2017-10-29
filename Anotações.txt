@@ -225,3 +225,34 @@
     The service handles the client request and returns a response at some later point, at which time the client retrieves the response and proceeds with its processing.
     When there is a human approval step involed in a service, it must be implemented as asynchronous service.
     Another case also valid since the dependant system is having availability problems. Both the cases return response at some later point without responding immediatly.
+
+
+wrapperStyle - The following binding declarations MAY appear in the context of a WSDL document, either as an extension to the wsdl:definitions element or in an external binding file at a place where there is a WSDL document in scope.
+Is enable by default
+<jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
+<jaxws:enableWrapperStyle/>
+
+
+******************************************MUITO IMPORTANTE**************************************************************
+WSDL 1.1
+In WSDL, the abstract definition of endpoints and messages is separated from their concrete network deployment or data format bindings.
+This allows the reuse of abstract definitions: messages, which are abstract descriptions of the data being exchanged, and port types which are abstract collections of operations.
+The concrete protocol and data format specification for a particular port type constitute a reusable binding.
+A port is defined by associating a network address with a reusable binding, and a collection of ports define a service.
+Hence, a WSDL document uses the following elements in the definition of network services:
+
+Types - a container for data type definitions using some type system (such as XSD).
+Message - an abstract, typed definition of the data being communicated.
+Operation - an abstract description of an action supported by the service.
+Port Type - an abstract set of operations supported by one or more Endpoints.
+Binding - a concrete protocol and data format specification for a particular port type
+Port - a single endpoint defined as a combination of a binding and a network address.
+Service - a collection of related endpoints.
+
+Definitions
+name="LogService" -> wsdl:portType
+portName="LogPort" -> wsd:port
+serviceName="LogWebService" -> wsdl:service
+binding = portName + "Binding" -> "LogPortBinding"
+
+Transferir imagem via Web Service

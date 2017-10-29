@@ -1,0 +1,19 @@
+What is the correct statement about the document/literal/unwrapped(bare) WSDL binding in relation to WS-I Basic Profile v1.1?
+
+
+
+1. document/literal/wrapped
+The method parameters are wrapped into wrapper-classes by the JAX-WS runtime. This wrapping is visible in the SOAP message:
+inside the <S:body> element you will find one child element containing the individual parameters. This is because JAX-WS
+conforms strictly to the WS-I Basic Profile 1.1. (allowing one immediate child of the <S:body>)
+
+2. document/literal/unwrapped(bare)
+This also implies that if we want to use the Document/literal style in the unwrapped version (called bare) JAX-WS only
+allows one parameter per method. This would be the result of the SOAP message if JAX-WS wasn’t strict in its generation
+of artifacts
+
+This would not conform to the following rule of the Basic Profile v1.1:
+R9981 An ENVELOPE MUST have exactly zero or one child elements of the soap:Body element.
+
+Therefore an "Unwrapped" version of a Web Service containing a WebMethod with more than one parameter is NOT Basic
+Profile v1.1. compliant.

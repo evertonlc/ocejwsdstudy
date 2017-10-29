@@ -1,0 +1,6 @@
+MTOM can be enabled in different ways on the server side:
+
+1) Via a @MTOM annotation. To enable MTOM in the Web Service, specify the @MTOM annotation on the SIB.
+2) Via the enable-mtom attribute in the sun-jaxws.xml deployment descriptor
+3) Via the @BindingType annotation
+4) Via a MTOM policy in the WSDL

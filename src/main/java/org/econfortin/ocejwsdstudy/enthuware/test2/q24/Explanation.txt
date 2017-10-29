@@ -1,0 +1,31 @@
+The following terms are important:
+
+Service Oriented Architecture
+SOA is an architectural style based on software parts that provide application functionality as services to other applications.
+It is independent of any vendor, product, technology, or industry trend.
+
+SOA vs. Web Services
+SOAs may be implemented by Web services but Web services are not necessarily required to implement SOA
+
+SOA vs. SOAP
+SOA is an architectural style, SOAP a communication protocol
+
+Web Service (W3C)
+A software system designed to support interoperable machine-to-machine interaction over a network.
+It has an interface described in a machine-processable format (specifically WSDL).
+Other systems interact with the Web Service in a manner prescribed by its description using SOAP messages,
+typically conveyed using HTTP with an XML serialization in conjunction with other Web-related standards
+Its architecture consists of:
+1) Service Requester (communication request-provider via SOAP, request-broker via WSDL)
+2) Service Provider (communication provider-broker via WSDL)
+3) Service Broker (UDDI)
+
+SOAP (W3C)
+SOAP is a lightweight protocol for exchange of information in a decentralized, distributed environment.
+It is an XML based protocol that consists of three parts: an envelope that defines a framework for describing what is
+in a message and how to process it, a set of encoding rules for expressing instances of application-defined datatypes,
+and a convention for representing remote procedure calls and responses. SOAP can potentially be used in combination
+with a variety of other protocols;
+
+Services
+Services are software components with well-defined interfaces that are implementation-independent.

@@ -1,0 +1,15 @@
+What is the correct sequence of methods that must be added (in line //1 and line //2) in the following JAX-RS client to return a valid result.
+The request should be a POST request with a String as body.
+
+public static void main(String[] args) throws IOException {
+    URL restURL = new URL("http://localhost:8080/SimpleRS/math/table/post");
+    HttpURLConnection connection = (HttpURLConnection) restURL.openConnection();
+    // 1
+    //connection.setRequestMethod("POST");
+    //connection.setDoOutput(true);
+    connection.connect();
+    String entity = "5";
+    // 2
+    //DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+    //wr.writeBytes(entity); wr.flush(); wr.close();
+}

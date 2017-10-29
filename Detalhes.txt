@@ -1,0 +1,24 @@
+Addressing
+- Quando o cliente enviar mensagens para o servidor com informação de addressing e o servidor não suportar, o servidor irá ignorar os headers;
+- Quando o cliente enviar mensagens para o servidor sem informação de addressing e o servidor exigir, o servidor irá lançar uma exception;
+
+Addressing no cliente
+Proxy client:
+MathTableService port = service.getMathTableImplPort(new AddressingFeature());
+
+Dispatch client:
+Dispatch<SOAPMessage> dispatch = service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE, new AddressingFeature());
+
+WebService Injection with Addressing:
+public class MyClient {        
+
+    @Addressing
+    @WebServiceRef(StockQuoteService.class)
+    private StockQuoteProvider stockQuoteProvider;
+}
+
+MTOM
+- A threshold parameter only applies to the side that the feature is turned on.
+- Como ativar o MTOM no cliente
+
+    public MTOMFeature(boolean enabled, int threshold)

@@ -1,0 +1,7 @@
+JSR-181
+
+The following attributes are not allowed in the @WebService annotation on an endpoint interface (SEI):
+
+- serviceName
+- portName
+- endpointInterface

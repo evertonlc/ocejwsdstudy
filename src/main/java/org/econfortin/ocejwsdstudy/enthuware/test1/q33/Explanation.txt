@@ -1,0 +1,9 @@
+We have got a Web Service (JAX-WS) running as an EJB.
+We have got 2 logical security roles: "Student" and "Teacher". In one of the methods createSchedule() we only want to
+allow the "Teacher" to run the method and we want to log the user Principal's name.
+How do we implement this requirement?
+
+1) Enable Authentication in the web-container
+2) Use @DeclareRoles({"Student", "Teacher"}) on the EJB and @RolesAllowed("Teacher")on the createSchedule() method
+3) Let the WebServiceContext be injected in the EJB with @Resource
+4) Invoke WebServiceContext.getUserPrincipal().getName() inside the createSchedule() method to get the user's name

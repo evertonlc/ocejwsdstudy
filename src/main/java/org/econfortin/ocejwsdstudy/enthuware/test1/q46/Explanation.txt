@@ -1,0 +1,19 @@
+A JAX-WS client can set some properties on the BindingProvider.
+
+The properties that are available in the BindingProvider are:
+
+From the API javax.xml.ws.BindingProvider
+
+static String ENDPOINT_ADDRESS_PROPERTY
+    Target service endpoint address.
+static String PASSWORD_PROPERTY
+    Password for authentication.
+static String SESSION_MAINTAIN_PROPERTY
+    This boolean property is used by a service client to indicate whether or not it wants to participate in
+    a session with a service endpoint.
+static String SOAPACTION_URI_PROPERTY
+    Standard property for SOAPAction.
+static String SOAPACTION_USE_PROPERTY
+    Standard property for SOAPAction.
+static String USERNAME_PROPERTY
+    User name for authentication.

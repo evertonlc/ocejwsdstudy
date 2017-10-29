@@ -1,0 +1,7 @@
+SwA defines a multi-part MIME structure for packaging attachments with SOAP messages.
+    The structure contains a primary SOAP envelope in its root part and one or more attachments in additional MIME parts.
+    However these attachments are not part of the SOAP envelope.
+
+WS-Security describes how to protect (secure) SOAP-messages and uses the SOAP header for that.
+    It doesn't define anything for additional MIME parts (as they are not part of the SOAP envelope) so you need use
+    an extra feature to secure the attachments.

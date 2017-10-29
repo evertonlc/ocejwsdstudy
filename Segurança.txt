@@ -1,0 +1,33 @@
+Confiurações no web.xml
+
+
+
+The <user-data-constraint> element defines the protection level of data sent between the client and server.
+It can be used to force SSL for a particular area of the application, for the <security-constraint> where it is defined.
+This can be as wide as the entire application for all users, or just for a specific role or user, for a specific folder.
+
+
+<security-constraint>
+    <web-resource-collection>
+        <url-pattern>/eplorder/</url-pattern> //Vai tentar chamar esta url em específico via https
+        <http-method>GET</http-method>
+    </web-resource-collection>
+    <user-data-constraint>
+        <transport-guarantee>NONE</transport-guarantee>             //no special transport guarantees (this is the default if there is no user-data-constraint defined)
+        <transport-guarantee>INTEGRAL</transport-guarantee>         //data must be sent in a way that guarantees it cannot be changed during transmission (ie: data is checksummed, SSL achieves this)
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>     //data must be sent in a way that guarantees it canot be observed (or changed) during transmission (ie: data is encrypted, SSL achieves this)
+    </user-data-constraint>
+</security-constraint>
+
+<login-config>
+    <auth-method>BASIC</auth-method>        //BASIC authentication, login is via a browser-specific popup login window
+    <auth-method>DIGEST</auth-method>       //DIGEST based authentication, login is via a browser-specific popup login window as with BASIC, but credentials are hashed at the client end using a random value from the server, to prevent the plaintext password being sent over HTTP.
+    <auth-method>FORM</auth-method>         //FORM based authentication, uses a login page specified with <form-login-page> and the user is sent to an error page specified with <form-error-page> on unsuccessful logins.
+    <auth-method>CLIENT-CERT</auth-method>  //Client-side SSL certificate based authentication. The certificate is passed to the server to authenticate.
+</login-config>
+
+From WS-Security
+The specification addresses:
+Authentication - attach security tokens to SOAP messages
+Integrity & Non-repudiation	 - signing of SOAP messages
+Confidentiality - encrypting of SOAP messages

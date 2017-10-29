@@ -1,0 +1,21 @@
+We have a Web Service that returns a java.awt.Image from an Image database.
+What should be done in order for the client to work directly with a java.awt.Image?
+
+From JAXB 2.2
+
+H.2 Binding MIME Binary Data As specified in [MIME], the XML Schema annotation attribute, xmime:expectedContentTypes,
+lists the expected MIME contenttype(s) for element content whose type derives from the xsd binary datatypes, xs:base64Binary or xs:hexBinary.
+
+JAXB 2.0 databinding recognizes this schema constraint to improve the binding of MIME type constrained binary data to Java representation.
+The xmime:expectedContentType attribute is allowed on type definitions deriving from binary datatypes and on element
+declarations with types that Enhanced Binary Data Handling derive from binary datatypes.
+
+H.2.1.1 Binding Known Media Type
+
+MIME Type    Java Type
+--------------------------------
+image/gif - java.awt.Image
+image/jpeg - java.awt.Image
+text/xml - javax.xml.transform.Source
+application/xml - javax.xml.transform.Source
+other MIME types - javax.activation.DataHandler

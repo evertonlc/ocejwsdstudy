@@ -1,0 +1,9 @@
+Which of the following security frameworks emphasize on Authorization?
+
+Security Assertion Markup Language (SAML)
+SAML deals with Authentication, Authorization and Multi-domain web Single Sign-On (SSO) which is arguably the most
+    important use case for which SAML is applied.
+
+Extensible Access Control Markup Language (XACML)
+The standard defines a declarative access control policy language implemented in XML and a processing model describing
+    how to evaluate access requests according to the rules defined in policies.
